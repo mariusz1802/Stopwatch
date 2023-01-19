@@ -11,9 +11,55 @@
   padding: 0;
 }
 
+.time {
+  display: flex;
+}
+
+.stoperContainer {
+  border: 5px solid #ffead1;
+  padding: 30px;
+  background: linear-gradient(30deg, #ff8a04, #ffd900);
+}
+
+[data-time] {
+  font-family: digital;
+  font-size: 8rem;
+}
+
+[data-time]::after {
+  content: ":";
+}
+
+[data-time]:last-child::after {
+  content: "";
+}
+
 body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   color: white;
   font-family: Arial;
-  background: linear-gradient(30deg, #ff8a04, #ffd900);
+  background: black;
   height: 100vh;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 30%;
+  height: 60px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  border: none;
+}
+
+button:hover {
+  background: grey;
+  cursor: pointer;
 }

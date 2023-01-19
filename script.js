@@ -1,114 +1,54 @@
-class Calculator {
-  constructor(previousOperandTextElement, currentOperandTextElement) {
-    this.previousOperandTextElement = previousOperandTextElement;
-    this.currentOperandTextElement = currentOperandTextElement;
-    this.clear();
+class Stopwatch {
+  constructor(minute, second, milisecond) {
+    this.minute = minute;
+    this.second = second;
+    this.milisecond = milisecond;
   }
 
-  clear() {
-    this.currentOperand = '';
-    this.previousOperand = '';
-    this.operation = undefined;
+  start() {
+    alert("start");
+  }
+  stop() {
+    alert("stop");
+  }
+  reset() {
+    alert("Reset");
   }
 
-  delete() {
-    this.currentOperand = this.currentOperand.toString().slice(0, -1);
-
-  }
-  appendNumber(number) {
-    if (number === '.' && this.currentOperand.includes('.')) return;
-    this.currentOperand = this.currentOperand.toString() + number.toString();
-  }
-
-  chooseOperation(operation) {
-    if (this.currentOperand === '') return;
-    if (this.previousOperand !== '') {
-      this.compute();
-    }
-    this.operation = operation;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = '';
-  }
-
-  compute() {
-    let computation;
-    const prev = parseFloat(this.previousOperand);
-    const current = parseFloat(this.currentOperand);
-    if (isNaN(prev) || isNaN(current)) return;
-    switch(this.operation) {
-      case '+':
-        computation = prev + current;
-        break;
-      case '-':
-        computation = prev - current;
-        break;
-      case '*':
-        computation = prev * current;
-        break;
-      case '÷':
-        computation = prev / current; 
-        break;
-      default:
-        return;
-    }
-    this.currentOperand = computation;
-    this.operation = undefined;
-    this.previousOperand = '';
-  }
-
-  updateDisplay() {
-    this.currentOperandTextElement.innerText = this.currentOperand;
-    this.previousOperandTextElement.innerText = this.previousOperand;
-    if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`
-    }
-  }
+  updateDisplay() {}
 }
 
-const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-operation]');
-const equalsButton = document.querySelector('[data-equal]');
-const dataDel = document.querySelector('[data-delete]');
-const dataAC = document.querySelector('[data-ac]');
-const previousOperandTextElement = document.querySelector(
-  '[data-previous-operand]'
-);
-const currentOperandTextElement = document.querySelector(
-  '[data-current-operand]'
-);
+const minute = document.querySelector(".minute");
+const second = document.querySelector(".second");
+const milisecond = document.querySelector(".milisecond");
 
-const calculator = new Calculator(
-  previousOperandTextElement,
-  currentOperandTextElement
-);
+const startBtn = document.querySelector("#startBtn");
+const stopBtn = document.querySelector("#stopBtn");
+const resettBtn = document.querySelector("#resetBtn");
 
-numberButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText);
-    calculator.updateDisplay();
-  });
+const stopwatch = new Stopwatch(minute, second, milisecond);
+
+startBtn.addEventListener("click", () => {
+  stopwatch.start();
+  stopwatch.updateDisplay();
 });
 
-operationButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    calculator.chooseOperation(button.innerText);
-    calculator.updateDisplay();
-  });
+stopBtn.addEventListener("click", () => {
+  stopwatch.stop();
+  stopwatch.updateDisplay();
 });
 
-equalsButton.addEventListener('click', (button) => {
-  calculator.compute();
-  calculator.updateDisplay();
+resettBtn.addEventListener("click", () => {
+  stopwatch.reset();
+  stopwatch.updateDisplay();
 });
 
-dataAC.addEventListener('click', (button) => {
-  console.log("clear")
-  calculator.clear();
-  calculator.updateDisplay();
-});
+function secondsRound() {
+  let init = 00;
 
+  setInterval(() => {
+    second.innerText = 10;
+  }, 1000);
+}
 
-dataDel.addEventListener('click', (button) => {
-  calculator.delete()
-  calculator.updateDisplay();
-})
+secondsRound();
