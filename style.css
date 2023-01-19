@@ -1,0 +1,19 @@
+@font-face {
+  font-family: digital;
+  src: url(./fonts/digital-7.ttf);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: white;
+  font-family: Arial;
+  background: linear-gradient(30deg, #ff8a04, #ffd900);
+  height: 100vh;
+}
