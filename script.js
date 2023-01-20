@@ -5,9 +5,44 @@ class Stopwatch {
     this.milisecond = milisecond;
   }
 
-  start() {
-    alert("start");
+
+   start() {
+    console.log("start");
+    tens++;
+    if(tens <= 9){
+      milisecond.innerHTML = "0" + tens;
+    }
+    if(tens > 9){
+      milisecond.innerHTML = tens;
+    }
+  
+    if( tens > 99){
+        seconds++
+        if(seconds <= 9) {
+          second.innerHTML = "0" + seconds;
+          tens = 0;
+          milisecond.innerHTML = "0" +0;
+        }
+        if(seconds > 9){
+          second.innerHTML = seconds;
+        }
+    }
+    if(seconds > 59){
+        minutes++
+        if(minutes <= 9) {
+              minute.innerHTML = "0" + minutes
+              seconds = 0;
+              second.innerHTML = "0" + 0; 
+
+        }
+
+        minute.innerHTML = minutes;
+        if(minute > 59) {
+            this.reset();
+        }
+    }
   }
+
   stop() {
     alert("stop");
   }
@@ -15,12 +50,22 @@ class Stopwatch {
     alert("Reset");
   }
 
-  updateDisplay() {}
-}
 
-const minute = document.querySelector(".minute");
-const second = document.querySelector(".second");
-const milisecond = document.querySelector(".milisecond");
+}
+let minutes = 00;
+let seconds = 00;
+let tens = 00;
+let Interval;
+
+
+
+
+
+
+
+let minute = document.querySelector(".minute");
+let second = document.querySelector(".second");
+let milisecond = document.querySelector(".milisecond");
 
 const startBtn = document.querySelector("#startBtn");
 const stopBtn = document.querySelector("#stopBtn");
@@ -29,26 +74,18 @@ const resettBtn = document.querySelector("#resetBtn");
 const stopwatch = new Stopwatch(minute, second, milisecond);
 
 startBtn.addEventListener("click", () => {
-  stopwatch.start();
-  stopwatch.updateDisplay();
+  clearInterval(Interval);
+  Interval = setInterval(stopwatch.start, 1)
+ 
 });
 
 stopBtn.addEventListener("click", () => {
   stopwatch.stop();
-  stopwatch.updateDisplay();
+ 
 });
 
 resettBtn.addEventListener("click", () => {
   stopwatch.reset();
-  stopwatch.updateDisplay();
+
 });
 
-function secondsRound() {
-  let init = 00;
-
-  setInterval(() => {
-    second.innerText = 10;
-  }, 1000);
-}
-
-secondsRound();
