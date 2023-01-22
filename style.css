@@ -13,17 +13,24 @@
 
 .time {
   display: flex;
+  margin: auto;
+  justify-content: center;
 }
 
 .stoperContainer {
   border: 5px solid #ffead1;
   padding: 30px;
+  min-width: 600px;
+  margin: auto;
   background: linear-gradient(30deg, #ff8a04, #ffd900);
 }
 
 [data-time] {
   font-family: digital;
   font-size: 8rem;
+  min-width: 100px;
+  border: 1px solid white;
+
 }
 
 [data-time]::after {
